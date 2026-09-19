@@ -21,10 +21,32 @@ public class Particle {
     }
 
     public Color color() {
-        if (flavor == ParticleFlavor.EMPTY) {
-            return Color.BLACK;
+//        if (flavor == ParticleFlavor.EMPTY) {
+//            return Color.BLACK;
+//        }
+//        return Color.GRAY;
+//不注释的话下面无法访问
+// task1
+
+        switch(flavor){
+            case EMPTY:
+                return Color.BLACK;
+            case SAND:
+                return Color.YELLOW;
+            case BARRIER:
+                return Color.GRAY;
+            case WATER:
+                return Color.BLUE;
+            case FOUNTAIN:
+                return Color.CYAN;
+            case PLANT:
+                return new Color(0, 255, 0);
+            case FIRE:
+                return new Color(255,0,0);
+            case FLOWER:
+                return new Color(255,141,161);
         }
-        return Color.GRAY;
+    return null;
     }
 
     public void moveInto(Particle other) {
