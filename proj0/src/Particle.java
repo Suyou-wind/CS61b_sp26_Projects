@@ -72,6 +72,10 @@ public class Particle {
     }
 
     public void action(Map<Direction, Particle> neighbors) {
+        if(flavor==ParticleFlavor.EMPTY)
+            return;
+        if(flavor!=ParticleFlavor.BARRIER)
+            fall(neighbors);
     }
 }
 //test
