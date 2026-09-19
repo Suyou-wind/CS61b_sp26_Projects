@@ -45,3 +45,4 @@ public class Particle {
     public void action(Map<Direction, Particle> neighbors) {
     }
 }
+//test
