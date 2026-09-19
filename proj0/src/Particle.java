@@ -43,12 +43,30 @@ public class Particle {
                 return Color.BLUE;
             case FOUNTAIN:
                 return Color.CYAN;
-            case PLANT:
-                return new Color(0, 255, 0);
-            case FIRE:
-                return new Color(255,0,0);
-            case FLOWER:
-                return new Color(255,141,161);
+//            case PLANT:
+//                return new Color(0, 255, 0);
+//            case FIRE:
+//                return new Color(255,0,0);
+//            case FLOWER:
+//                return new Color(255,141,161);
+//            because task 10
+        }
+        if (flavor == ParticleFlavor.FLOWER) {
+            double ratio = (double) Math.max(0, Math.min(lifespan, FLOWER_LIFESPAN)) / FLOWER_LIFESPAN;
+            int r = 120 + (int) Math.round((255 - 120) * ratio);
+            int g = 70 + (int) Math.round((141 - 70) * ratio);
+            int b = 80 + (int) Math.round((161 - 80) * ratio);
+            return new Color(r, g, b);
+        }
+        if (flavor == ParticleFlavor.PLANT) {
+            double ratio = (double) Math.max(0, Math.min(lifespan, PLANT_LIFESPAN)) / PLANT_LIFESPAN;
+            int g = 120 + (int) Math.round((255 - 120) * ratio);
+            return new Color(0, g, 0);
+        }
+        if (flavor == ParticleFlavor.FIRE) {
+            double ratio = (double) Math.max(0, Math.min(lifespan, FIRE_LIFESPAN)) / FIRE_LIFESPAN;
+            int r = (int) Math.round(255 * ratio);
+            return new Color(r, 0, 0);
         }
     return null;
     }
