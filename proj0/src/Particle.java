@@ -82,6 +82,28 @@ public class Particle {
     }
 
     public void grow(Map<Direction, Particle> neighbors) {
+        int random=StdRandom.uniformInt(10);
+        Particle target=null;
+
+        switch (random){
+            case 0:
+                target=neighbors.get(Direction.LEFT);
+                break;
+            case 1:
+                target=neighbors.get(Direction.RIGHT);
+                break;
+            case 2:
+                target=neighbors.get(Direction.UP);
+                break;
+            default:
+                return;
+        }
+
+        if(target.flavor==ParticleFlavor.EMPTY)
+        {
+            target.flavor=this.flavor;
+            target.lifespan=LIFESPANS.get(this.flavor);
+        }
     }
 
     public void burn(Map<Direction, Particle> neighbors) {
@@ -94,6 +116,9 @@ public class Particle {
             fall(neighbors);
         if(flavor==ParticleFlavor.WATER)
             flow(neighbors);
+        if(flavor==ParticleFlavor.FLOWER||flavor==ParticleFlavor.PLANT)
+            grow(neighbors);
+
     }
 }
 //test
