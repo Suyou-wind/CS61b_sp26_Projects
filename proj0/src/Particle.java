@@ -123,12 +123,22 @@ public class Particle {
 
         if(target.flavor==ParticleFlavor.EMPTY)
         {
-            target.flavor=this.flavor;
-            target.lifespan=LIFESPANS.get(this.flavor);
+            target.flavor=flavor;
+            target.lifespan=LIFESPANS.get(flavor);
         }
     }
 
     public void burn(Map<Direction, Particle> neighbors) {
+//        int random=StdRandom.uniformInt(10);
+        for(Particle particle:neighbors.values()){
+            if(particle.flavor==ParticleFlavor.FLOWER||particle.flavor==ParticleFlavor.PLANT){
+                if(StdRandom.uniformInt(10)<=3){
+                    particle.flavor=ParticleFlavor.FIRE;
+                    particle.lifespan=FIRE_LIFESPAN;
+                }
+            }
+        }
+
     }
 
     public void action(Map<Direction, Particle> neighbors) {
@@ -140,6 +150,8 @@ public class Particle {
             flow(neighbors);
         if(flavor==ParticleFlavor.FLOWER||flavor==ParticleFlavor.PLANT)
             grow(neighbors);
+        if(flavor==ParticleFlavor.FIRE)
+            burn(neighbors);
     }
 
     public void decrementLifespan(){
